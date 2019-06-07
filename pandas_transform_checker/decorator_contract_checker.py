@@ -36,17 +36,13 @@ def input_df_contract(contract_params: dict, df_param=None):
             allow_add_drop_record (bool): indicate if the function can drop some records (ex. when dropna is used)
 
     usage:
-        when you have a function that takes a df as input:
-        ```
-        def super_func(df_input):
-            ...
-        ```
-        just add the annotation to automatically check properties
-        ```
-        @input_df_contract(df_param="df_input", contract_dict={"col_editions": {"col_e","col_f"}})
-        def super_func(df_input):
-            ...
-        ```
+        when you have a function that takes a df as input::
+            def super_func(df_input):
+
+        just add the annotation to automatically check properties::
+            @input_df_contract(df_param="df_input", contract_dict={"col_editions": {"col_e","col_f"}})
+            def super_func(df_input):
+
 
     """
     contract = DataframeContract(**contract_params)
