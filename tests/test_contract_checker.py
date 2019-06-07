@@ -77,15 +77,15 @@ class Test_contract_checker(TestCase):
         col_addition_ok(df)
         col_addition_ok2(df)
         # should fail:
-        with self.assertRaises(AssertionError, msg="must raise error when no column is created") as cm:
+        with self.assertRaises(RuntimeError, msg="must raise error when no column is created") as cm:
             col_addition_wrong_name(df)
-        with self.assertRaises(AssertionError, msg="must raise error when no column is created") as cm:
+        with self.assertRaises(RuntimeError, msg="must raise error when no column is created") as cm:
             col_addition_wrong_name(df)
-        with self.assertRaises(AssertionError, msg="must raise error when type don't meet contract") as cm:
+        with self.assertRaises(RuntimeError, msg="must raise error when type don't meet contract") as cm:
             col_addition_wrong_type(df)
-        with self.assertRaises(AssertionError, msg="must raise error when specified column is not created") as cm:
+        with self.assertRaises(RuntimeError, msg="must raise error when specified column is not created") as cm:
             col_addition_no_addition(df)
-        with self.assertRaises(AssertionError, msg="must raise error when column already exist") as cm:
+        with self.assertRaises(RuntimeError, msg="must raise error when column already exist") as cm:
             col_addition_already_exist(df)
 
     def test_deletion(self):
@@ -113,9 +113,9 @@ class Test_contract_checker(TestCase):
         col_delete_ok(df)
         col_delete_ok2(df)
         # should fail
-        with self.assertRaises(AssertionError, msg="must raise error when no column is deleted") as cm:
+        with self.assertRaises(RuntimeError, msg="must raise error when no column is deleted") as cm:
             col_delete_no_deletion(df)
-        with self.assertRaises(AssertionError, msg="must raise error when column already deleted") as cm:
+        with self.assertRaises(RuntimeError, msg="must raise error when column already deleted") as cm:
             col_delete_already_deleted(df)
 
     def test_edition(self):
@@ -138,7 +138,7 @@ class Test_contract_checker(TestCase):
         col_edit_ok(df)
         col_edit_ok2(df)
         # should fail
-        with self.assertRaises(AssertionError, msg="must raise error when the wrong column is edited") as cm:
+        with self.assertRaises(RuntimeError, msg="must raise error when the wrong column is edited") as cm:
             col_delete_edit_wrong_col(df)
 
     def test_index_edition(self):
@@ -155,7 +155,7 @@ class Test_contract_checker(TestCase):
         # should not fail
         index_edit_ok(df)
         # should fail
-        with self.assertRaises(AssertionError, msg="must raise error when the index is edited while allow_index_edition is set to False") as cm:
+        with self.assertRaises(RuntimeError, msg="must raise error when the index is edited while allow_index_edition is set to False") as cm:
             index_edit_ko(df)
 
     def test_all(self):

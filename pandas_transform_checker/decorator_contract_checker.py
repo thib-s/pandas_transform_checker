@@ -138,7 +138,7 @@ class DataframeContract:
         if not self.allow_add_drop_record:
             success = success and self.check_values(len(df_in), len(df_out), message="record count")
         # this check is supposed to always pass ( if previous checks are ok )
-        assert ((set(df_in.columns) | set(self.col_additions.keys())) - self.col_deletions) == set(df_out.columns)
+        assert ((set(df_in.columns) | set(self.col_additions.keys())) - self.col_deletions) == set(df_out.columns) or not success
         # check columns modifications
         unmodifiable_cols = set(df_in.columns) - (self.col_deletions | self.col_editions)
         if not self.allow_index_edition:
